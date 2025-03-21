@@ -1,10 +1,126 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Ouijo</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Art for Your Soul</title>
+  <style>
+    /* Basic reset and body styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: linear-gradient(135deg, #000, #2c3e50);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      font-family: 'Courier New', Courier, monospace;
+      color: #fff;
+    }
+    
+    /* The glitch text styling */
+    .glitch {
+      font-size: 8vw; /* Responsive large text */
+      position: relative;
+      animation: glitch 2s infinite;
+    }
+    
+    /* Create duplicate layers with pseudo-elements */
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    
+    /* One layer shifted right with red shadow */
+    .glitch::before {
+      left: 2px;
+      text-shadow: -2px 0 red;
+      clip: rect(24px, 900px, 90px, 0);
+      animation: glitch-anim 3s infinite linear alternate-reverse;
+    }
+    
+    /* One layer shifted left with blue shadow */
+    .glitch::after {
+      left: -2px;
+      text-shadow: -2px 0 blue;
+      clip: rect(85px, 900px, 140px, 0);
+      animation: glitch-anim2 2s infinite linear alternate-reverse;
+    }
+    
+    /* Main glitch movement animation */
+    @keyframes glitch {
+      0%   { transform: translate(0, 0); }
+      20%  { transform: translate(-2px, 2px) skew(-0.5deg, -0.5deg); }
+      40%  { transform: translate(-2px, -2px) skew(0.5deg, 0.5deg); }
+      60%  { transform: translate(2px, 2px) skew(-0.5deg, -0.5deg); }
+      80%  { transform: translate(2px, -2px) skew(0.5deg, 0.5deg); }
+      100% { transform: translate(0, 0); }
+    }
+    
+    /* Glitch pseudo-element animation 1 */
+    @keyframes glitch-anim {
+      0%   { clip: rect(42px, 9999px, 44px, 0); }
+      5%   { clip: rect(12px, 9999px, 56px, 0); }
+      10%  { clip: rect(74px, 9999px, 20px, 0); }
+      15%  { clip: rect(22px, 9999px, 58px, 0); }
+      20%  { clip: rect(42px, 9999px, 44px, 0); }
+      25%  { clip: rect(12px, 9999px, 56px, 0); }
+      30%  { clip: rect(74px, 9999px, 20px, 0); }
+      35%  { clip: rect(22px, 9999px, 58px, 0); }
+      40%  { clip: rect(42px, 9999px, 44px, 0); }
+      45%  { clip: rect(12px, 9999px, 56px, 0); }
+      50%  { clip: rect(74px, 9999px, 20px, 0); }
+      55%  { clip: rect(22px, 9999px, 58px, 0); }
+      60%  { clip: rect(42px, 9999px, 44px, 0); }
+      65%  { clip: rect(12px, 9999px, 56px, 0); }
+      70%  { clip: rect(74px, 9999px, 20px, 0); }
+      75%  { clip: rect(22px, 9999px, 58px, 0); }
+      80%  { clip: rect(42px, 9999px, 44px, 0); }
+      85%  { clip: rect(12px, 9999px, 56px, 0); }
+      90%  { clip: rect(74px, 9999px, 20px, 0); }
+      95%  { clip: rect(22px, 9999px, 58px, 0); }
+      100% { clip: rect(42px, 9999px, 44px, 0); }
+    }
+    
+    /* Glitch pseudo-element animation 2 */
+    @keyframes glitch-anim2 {
+      0%   { clip: rect(12px, 9999px, 56px, 0); }
+      5%   { clip: rect(42px, 9999px, 44px, 0); }
+      10%  { clip: rect(22px, 9999px, 58px, 0); }
+      15%  { clip: rect(74px, 9999px, 20px, 0); }
+      20%  { clip: rect(12px, 9999px, 56px, 0); }
+      25%  { clip: rect(42px, 9999px, 44px, 0); }
+      30%  { clip: rect(22px, 9999px, 58px, 0); }
+      35%  { clip: rect(74px, 9999px, 20px, 0); }
+      40%  { clip: rect(12px, 9999px, 56px, 0); }
+      45%  { clip: rect(42px, 9999px, 44px, 0); }
+      50%  { clip: rect(22px, 9999px, 58px, 0); }
+      55%  { clip: rect(74px, 9999px, 20px, 0); }
+      60%  { clip: rect(12px, 9999px, 56px, 0); }
+      65%  { clip: rect(42px, 9999px, 44px, 0); }
+      70%  { clip: rect(22px, 9999px, 58px, 0); }
+      75%  { clip: rect(74px, 9999px, 20px, 0); }
+      80%  { clip: rect(12px, 9999px, 56px, 0); }
+      85%  { clip: rect(42px, 9999px, 44px, 0); }
+      90%  { clip: rect(22px, 9999px, 58px, 0); }
+      95%  { clip: rect(74px, 9999px, 20px, 0); }
+      100% { clip: rect(12px, 9999px, 56px, 0); }
+    }
+  </style>
 </head>
 <body>
-    <h1>Welcome to Ouijo, my lover.</h1>
+  <!-- The main element with the glitch effect.
+       The "data-text" attribute is used to replicate the text in pseudo-elements -->
+  <h1 class="glitch" data-text="art for your soul">art for your soul</h1>
 </body>
 </html>
